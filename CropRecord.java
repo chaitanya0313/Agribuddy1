@@ -1,9 +1,9 @@
-
 package com.agribuddy.agribuddy_backend.Entity;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "crop_record")
@@ -21,9 +21,11 @@ public class CropRecord {
     private LocalDate startDate;
 
     @OneToMany(mappedBy = "cropRecord", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Income> incomes;
 
     @OneToMany(mappedBy = "cropRecord", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Expense> expenses;
 
     public Long getId() { return id; }
